@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+<!--[if lt IE 7 ]>
+<html class="ie6" lang="zh-cmn-Hans"><![endif]-->
+<!--[if IE 7 ]>
+<html class="ie7" lang="zh-cmn-Hans"><![endif]-->
+<!--[if IE 8 ]>
+<html class="ie8" lang="zh-cmn-Hans"><![endif]-->
+<!--[if IE 9 ]>
+<html class="ie9" lang="zh-cmn-Hans"><![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=2.0,maximum-scale=1,user-scalable=no">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/css/ui.css"/>
+    <script src="/js/app.js"></script>
+</head>
+<body>
+<header>
+    <div class="title">{{ page.title }}</div>
+    <div class="mainNav">
+        <a href="/index.html">首页</a>
+        <a href="/about.html">关于</a>
+    </div>
+</header>
+<section class="main">
+    {{ content }}
+</section>
+<footer class="footer">
+    <div class="clearfix">
+        <div class="thefooter">
+            <p>Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> <a href="http://www.miya.pub">米衙</a></p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
