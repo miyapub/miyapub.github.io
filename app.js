@@ -400,6 +400,25 @@ window.onload = function () {
         }
         objs.push(obj_random);
     });
+    document.getElementById("make_a_man").addEventListener("click", function () {
+        z_index += 1;
+        var obj_random = {
+            on: false,//悬浮状态
+            select: false,//被选中状态
+            type: "icon",
+            imgSrc:"icons/man.png",
+            imgData:null,
+            point: {x: 400, y: 300},
+            width: 125,
+            height: 200,
+            border: 20,
+            color: {fill: "#f00000", stroke: "#000000"},
+            text: "",
+            name: "",
+            zindex: z_index
+        }
+        objs.push(obj_random);
+    });
     document.getElementById("toimg").addEventListener("click", function () {
         var img = canvas.toDataURL();
         window.open(img);
