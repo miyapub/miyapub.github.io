@@ -72,20 +72,41 @@ function un_select() {
 
 function renderObj(obj) {
     //渲染 obj
-    if (obj.type === "rect") {
-        c.lineWidth = obj.border;
-        c.strokeStyle = obj.color.stroke;
-        c.fillStyle = obj.color.fill;
-        //中心定位法
 
-        c.beginPath();
-        c.rect(obj.point.x, obj.point.y, obj.width, obj.height);
-        if (obj.border > 0) {
-            c.stroke();
-        }
-        c.fill();
-        c.closePath();
+    switch (obj.type){
+        case "rect":
+            c.lineWidth = obj.border;
+            c.strokeStyle = obj.color.stroke;
+            c.fillStyle = obj.color.fill;
+            //中心定位法
+
+            c.beginPath();
+            c.rect(obj.point.x, obj.point.y, obj.width, obj.height);
+            if (obj.border > 0) {
+                c.stroke();
+            }
+            c.fill();
+            c.closePath();
+            break;
+        case "icon":
+            var img=new Image();
+            if(obj.imgData!=null){
+                c.drawImage(obj.imgData,obj.point.x,obj.point.y,obj.width,obj.height);
+
+            }else{
+                img.src=obj.imgSrc;
+                img.onload=function(){
+                    obj.imgData=img;
+                    c.drawImage(img,obj.point.x,obj.point.y,obj.width,obj.height);
+                }
+            }
+
+        default :
+
     }
+
+
+
     //悬浮状态
     if (obj.on) {
         c.lineWidth = 2;
@@ -349,6 +370,25 @@ window.onload = function () {
             on: false,//悬浮状态
             select: false,//被选中状态
             type: "rect",
+            point: {x: 400, y: 300},
+            width: 50,
+            height: 50,
+            border: 20,
+            color: {fill: "#f00000", stroke: "#000000"},
+            text: "",
+            name: "",
+            zindex: z_index
+        }
+        objs.push(obj_random);
+    });
+    document.getElementById("make_a_say").addEventListener("click", function () {
+        z_index += 1;
+        var obj_random = {
+            on: false,//悬浮状态
+            select: false,//被选中状态
+            type: "icon",
+            imgSrc:"icons/say.png",
+            imgData:null,
             point: {x: 400, y: 300},
             width: 50,
             height: 50,
