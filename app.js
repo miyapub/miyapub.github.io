@@ -1,3 +1,18 @@
+/* plus */
+
+Array.prototype.remove=function(obj){
+    _do_objs_in_and_after(function(o,i){
+        if(o===obj){
+            objs.splice(i,1);
+            console.log("del:"+i);
+            un_select();
+            return "break";
+        }
+    },function(){
+
+    });
+}
+
 var z_index = 0;//叠放顺序
 
 var objs = new Array();
@@ -23,7 +38,7 @@ function _do_objs_in_and_after(in_fn, after_fn) {
     //循环objs 中 执行 in_fn，循环objs完毕后 执行 after_fn
     for (i = 0; i < objs.length; i++) {
         var obj = objs[i];
-        if (in_fn(obj) === "break") {
+        if (in_fn(obj,i) === "break") {
             break;
         }
 
@@ -341,6 +356,20 @@ window.onload = function () {
         }
         if (cp === "out") {
             un_select();
+        }
+    }
+
+
+    window.onkeydown=function(){
+        console.log(event.keyCode);
+        switch (event.keyCode){
+            case 8:
+                if(selected_obj){
+                    objs.remove(selected_obj);
+                }
+                break;
+            default :
+
         }
     }
     //bind attr
