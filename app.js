@@ -1,5 +1,7 @@
 /* plus */
-
+function log(s){
+    console.log(s);
+}
 Array.prototype.remove=function(obj){
     _do_objs_in_and_after(function(o,i){
         if(o===obj){
