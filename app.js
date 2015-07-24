@@ -36,6 +36,9 @@ var selected_cp_point_color = {
 
 function _do_objs_in_and_after(in_fn, after_fn) {
     //循环objs 中 执行 in_fn，循环objs完毕后 执行 after_fn
+
+
+
     for (i = 0; i < objs.length; i++) {
         var obj = objs[i];
         if (in_fn(obj,i) === "break") {
@@ -45,7 +48,19 @@ function _do_objs_in_and_after(in_fn, after_fn) {
     }
     after_fn(obj);
 }
+function _do_dao__objs_in_and_after(in_fn, after_fn) {
+    //逆向 循环objs 中 执行 in_fn，循环objs完毕后 执行 after_fn
 
+
+    for (i = objs.length-1; i>-1; i--) {
+        var obj = objs[i];
+        if (in_fn(obj,i) === "break") {
+            break;
+        }
+
+    }
+    after_fn(obj);
+}
 //鼠标坐标
 function _is_in(x, y, w, h) {
     if (at_x > x && at_x < x + w && at_y > y && at_y < y + h) {
@@ -64,15 +79,13 @@ function select_obj(obj) {
         //选中对象的属性
 
         //边框大小
-
-        document.getElementById("obj_border").value = obj.border;
-
-        //边框颜色
-        document.getElementById("obj_color_stroke").value = obj.color.stroke;
-        //填充颜色
-        document.getElementById("obj_color_fill").value = obj.color.fill;
-
-
+        if(obj.type==="rect"){
+            document.getElementById("obj_border").value = obj.border;
+            //边框颜色
+            document.getElementById("obj_color_stroke").value = obj.color.stroke;
+            //填充颜色
+            document.getElementById("obj_color_fill").value = obj.color.fill;
+        }
     });
 }
 function un_select() {
@@ -280,8 +293,8 @@ window.onload = function () {
     }
 
     function _cur() {
-
-        _do_objs_in_and_after(function (obj) {
+        //逆向循环
+        _do_dao__objs_in_and_after(function (obj) {
             obj.on = false;
             //在区域内
             if (_is_in(obj.point.x, obj.point.y, obj.width, obj.height)) {
@@ -471,4 +484,37 @@ window.onload = function () {
         var img = canvas.toDataURL();
         window.open(img);
     });
+    document.getElementById("uploadimg").addEventListener("change",function(){
+        var img=new Image();
+        var files = event.target.files||event.dataTransfer.files;
+        var file=files[0];
+        console.log(file);
+        if(file){
+            var reader = new FileReader();
+            reader.onload=function(){
+
+                img.src=this.result;
+                img.onload=function(){
+                    var obj_random = {
+                        on: false,//悬浮状态
+                        select: false,//被选中状态
+                        type: "icon",
+                        //imgSrc:this.result,
+                        imgData:img,
+                        point: {x: 0, y: 0},
+                        width: img.width,
+                        height: img.height,
+                        border: 0,
+                        color: {fill: "#f00000", stroke: "#000000"},
+                        text: "",
+                        name: "",
+                        zindex: z_index
+                    }
+                    objs.push(obj_random);
+                }
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
 }
