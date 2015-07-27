@@ -14,25 +14,46 @@
             padding: 0;
             background: rgba(0, 0, 0, 0.05);
         }
+
+        .hide {
+            display: none;
+        }
+
+        button {
+            width: auto;
+            padding: 10px;
+        }
     </style>
     <script src="app.js"></script>
 </head>
 <body>
-<canvas id="canvas"></canvas>
-<div id="tools">
-    <button id="make_a_rect">make_a_rect</button>
-    <button id="make_a_say">make_a_say</button>
-    <button id="make_a_man">make_a_man</button>
-    <button id="make_a_face_gaoxing">make_a_face_gaoxing</button>
-
-
+<canvas id="canvas" class="hide"></canvas>
+<div id="begin" class="begin">
+    <h3>新建画板</h3>
+    <button id="begin_800_600">800*600</button>
+    <button id="begin_1000_1000">1000*1000</button>
+    <button id="begin_500_500">500*500</button>
+    <button>自定义</button>
+    <div id="diy" class="hide">
+        <input id="begin_diy_width" type="text" value="600"/>
+        <input id="begin_diy_height" type="text" value="400"/>
+        <button id="begin_diy">确定</button>
+    </div>
 </div>
-<div id="attribute">
-    <input id="obj_border" type="number"/>
-    <input id="obj_color_stroke" type="color"/>
-    <input id="obj_color_fill" type="color"/>
+<div id="pan" class="hide">
+    <div id="tools">
+        <button id="make_a_rect">make_a_rect</button>
+        <button id="make_a_say">make_a_say</button>
+        <button id="make_a_man">make_a_man</button>
+        <button id="make_a_face_gaoxing">make_a_face_gaoxing</button>
+    </div>
+    <div id="attribute">
+        <input id="obj_border" type="number"/>
+        <input id="obj_color_stroke" type="color"/>
+        <input id="obj_color_fill" type="color"/>
+    </div>
+    <button id="toimg">toImg</button>
+    <input type="file" id="uploadimg">upoad img</input>
 </div>
-<button id="toimg">toImg</button>
-<input type="file" id="uploadimg">upoad img</input>
 </body>
 </html>

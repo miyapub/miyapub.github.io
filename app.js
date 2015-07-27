@@ -1,16 +1,16 @@
 /* plus */
-function log(s){
+function log(s) {
     console.log(s);
 }
-Array.prototype.remove=function(obj){
-    _do_objs_in_and_after(function(o,i){
-        if(o===obj){
-            objs.splice(i,1);
-            console.log("del:"+i);
+Array.prototype.remove = function (obj) {
+    _do_objs_in_and_after(function (o, i) {
+        if (o === obj) {
+            objs.splice(i, 1);
+            console.log("del:" + i);
             un_select();
             return "break";
         }
-    },function(){
+    }, function () {
 
     });
 }
@@ -40,10 +40,9 @@ function _do_objs_in_and_after(in_fn, after_fn) {
     //循环objs 中 执行 in_fn，循环objs完毕后 执行 after_fn
 
 
-
     for (i = 0; i < objs.length; i++) {
         var obj = objs[i];
-        if (in_fn(obj,i) === "break") {
+        if (in_fn(obj, i) === "break") {
             break;
         }
 
@@ -54,9 +53,9 @@ function _do_dao__objs_in_and_after(in_fn, after_fn) {
     //逆向 循环objs 中 执行 in_fn，循环objs完毕后 执行 after_fn
 
 
-    for (i = objs.length-1; i>-1; i--) {
+    for (i = objs.length - 1; i > -1; i--) {
         var obj = objs[i];
-        if (in_fn(obj,i) === "break") {
+        if (in_fn(obj, i) === "break") {
             break;
         }
 
@@ -81,7 +80,7 @@ function select_obj(obj) {
         //选中对象的属性
 
         //边框大小
-        if(obj.type==="rect"){
+        if (obj.type === "rect") {
             document.getElementById("obj_border").value = obj.border;
             //边框颜色
             document.getElementById("obj_color_stroke").value = obj.color.stroke;
@@ -103,7 +102,7 @@ function un_select() {
 function renderObj(obj) {
     //渲染 obj
 
-    switch (obj.type){
+    switch (obj.type) {
         case "rect":
             c.lineWidth = obj.border;
             c.strokeStyle = obj.color.stroke;
@@ -119,22 +118,21 @@ function renderObj(obj) {
             c.closePath();
             break;
         case "icon":
-            var img=new Image();
-            if(obj.imgData!=null){
-                c.drawImage(obj.imgData,obj.point.x,obj.point.y,obj.width,obj.height);
+            var img = new Image();
+            if (obj.imgData != null) {
+                c.drawImage(obj.imgData, obj.point.x, obj.point.y, obj.width, obj.height);
 
-            }else{
-                img.src=obj.imgSrc;
-                img.onload=function(){
-                    obj.imgData=img;
-                    c.drawImage(img,obj.point.x,obj.point.y,obj.width,obj.height);
+            } else {
+                img.src = obj.imgSrc;
+                img.onload = function () {
+                    obj.imgData = img;
+                    c.drawImage(img, obj.point.x, obj.point.y, obj.width, obj.height);
                 }
             }
 
         default :
 
     }
-
 
 
     //悬浮状态
@@ -206,14 +204,81 @@ function render() {
 }
 
 
-setInterval(function () {
-    render();
-}, 100);
+function _cur() {
+    //逆向循环
+    _do_dao__objs_in_and_after(function (obj) {
+        obj.on = false;
+        //在区域内
+        if (_is_in(obj.point.x, obj.point.y, obj.width, obj.height)) {
+            cha_x = at_x - obj.point.x;
+            cha_y = at_y - obj.point.y;
 
-window.onload = function () {
+
+            if (obj === selected_obj) {
+                if (selected_obj != null) {
+                    cp = "move";
+                }
+            } else {
+                obj.on = true;
+                cp = "over";
+                on_obj = obj;//悬浮的对象
+            }
+
+            return "break";
+        } else {
+            cp = "out";
+
+            //如果有被选择的
+            if (selected_obj) {
+                //在4个触点内
+                //左上
+                selected_cp_point_color = {
+                    zs: "#ccc",
+                    zx: "#ccc",
+                    ys: "#ccc",
+                    yx: "#ccc"
+                };
+
+                if (_is_in(obj.point.x - 4, obj.point.y - 4, 8, 8)) {
+                    console.log("左上");
+                    cp = "zs";
+                    selected_cp_point_color.zs = "#f00";
+                    return "break";
+                }
+                //左下
+                if (_is_in(obj.point.x - 4, obj.point.y + obj.height - 4, 8, 8)) {
+                    console.log("左下");
+                    cp = "zx";
+                    selected_cp_point_color.zx = "#f00";
+                    return "break";
+                }
+                //右上
+                if (_is_in(obj.point.x + obj.width - 4, obj.point.y - 4, 8, 8)) {
+                    console.log("右上");
+                    cp = "ys";
+                    selected_cp_point_color.ys = "#f00";
+                    return "break";
+                }
+                //右下
+                if (_is_in(obj.point.x + obj.width - 4, obj.point.y + obj.height - 4, 8, 8)) {
+                    console.log("右下");
+                    cp = "yx";
+                    selected_cp_point_color.yx = "#f00";
+                    return "break";
+                }
+            }
+        }
+
+    }, function () {
+        //selected_obj=null;
+        console.log(cp);
+    });
+}
+
+function begin(width, height) {
     canvas = document.getElementById('canvas');
-    canvas.width = 800;
-    canvas.height = 600;
+    canvas.width = width;
+    canvas.height = height;
     canvas.style.width = canvas.width + "px";
     canvas.style.height = canvas.height + "px";
     c = canvas.getContext('2d');
@@ -284,86 +349,9 @@ window.onload = function () {
         } else {
             //没有拖拽
             _cur();
-            /*
-             if(selected_obj!=null){
-             _cur();//判断鼠标的 区域  显示 操作 图标
-             }
-             */
-            //判断鼠标的 区域  显示 操作 图标
         }
-        //render();
     }
 
-    function _cur() {
-        //逆向循环
-        _do_dao__objs_in_and_after(function (obj) {
-            obj.on = false;
-            //在区域内
-            if (_is_in(obj.point.x, obj.point.y, obj.width, obj.height)) {
-                cha_x = at_x - obj.point.x;
-                cha_y = at_y - obj.point.y;
-
-
-                if (obj === selected_obj) {
-                    if (selected_obj != null) {
-                        cp = "move";
-                    }
-                } else {
-                    obj.on = true;
-                    cp = "over";
-                    on_obj = obj;//悬浮的对象
-                }
-
-                return "break";
-            } else {
-                cp = "out";
-
-                //如果有被选择的
-                if (selected_obj) {
-                    //在4个触点内
-                    //左上
-                    selected_cp_point_color = {
-                        zs: "#ccc",
-                        zx: "#ccc",
-                        ys: "#ccc",
-                        yx: "#ccc"
-                    };
-
-                    if (_is_in(obj.point.x - 4, obj.point.y - 4, 8, 8)) {
-                        console.log("左上");
-                        cp = "zs";
-                        selected_cp_point_color.zs = "#f00";
-                        return "break";
-                    }
-                    //左下
-                    if (_is_in(obj.point.x - 4, obj.point.y + obj.height - 4, 8, 8)) {
-                        console.log("左下");
-                        cp = "zx";
-                        selected_cp_point_color.zx = "#f00";
-                        return "break";
-                    }
-                    //右上
-                    if (_is_in(obj.point.x + obj.width - 4, obj.point.y - 4, 8, 8)) {
-                        console.log("右上");
-                        cp = "ys";
-                        selected_cp_point_color.ys = "#f00";
-                        return "break";
-                    }
-                    //右下
-                    if (_is_in(obj.point.x + obj.width - 4, obj.point.y + obj.height - 4, 8, 8)) {
-                        console.log("右下");
-                        cp = "yx";
-                        selected_cp_point_color.yx = "#f00";
-                        return "break";
-                    }
-                }
-            }
-
-        }, function () {
-            //selected_obj=null;
-            console.log(cp);
-        });
-    }
 
     canvas.onclick = function () {
         if (cp === "over") {
@@ -375,11 +363,11 @@ window.onload = function () {
     }
 
 
-    window.onkeydown=function(){
+    window.onkeydown = function () {
         console.log(event.keyCode);
-        switch (event.keyCode){
+        switch (event.keyCode) {
             case 8:
-                if(selected_obj){
+                if (selected_obj) {
                     objs.remove(selected_obj);
                 }
                 break;
@@ -414,7 +402,7 @@ window.onload = function () {
             on: false,//悬浮状态
             select: false,//被选中状态
             type: "rect",
-            point: {x: 400, y: 300},
+            point: {x: 0, y: 0},
             width: 50,
             height: 50,
             border: 20,
@@ -431,9 +419,9 @@ window.onload = function () {
             on: false,//悬浮状态
             select: false,//被选中状态
             type: "icon",
-            imgSrc:"icons/say.png",
-            imgData:null,
-            point: {x: 400, y: 300},
+            imgSrc: "icons/say.png",
+            imgData: null,
+            point: {x: 0, y: 0},
             width: 50,
             height: 50,
             border: 20,
@@ -450,9 +438,9 @@ window.onload = function () {
             on: false,//悬浮状态
             select: false,//被选中状态
             type: "icon",
-            imgSrc:"icons/face/gaoxing.png",
-            imgData:null,
-            point: {x: 400, y: 300},
+            imgSrc: "icons/face/gaoxing.png",
+            imgData: null,
+            point: {x: 0, y: 0},
             width: 50,
             height: 50,
             border: 20,
@@ -469,9 +457,9 @@ window.onload = function () {
             on: false,//悬浮状态
             select: false,//被选中状态
             type: "icon",
-            imgSrc:"icons/man.png",
-            imgData:null,
-            point: {x: 400, y: 300},
+            imgSrc: "icons/man.png",
+            imgData: null,
+            point: {x: 0, y: 0},
             width: 125,
             height: 200,
             border: 20,
@@ -486,23 +474,23 @@ window.onload = function () {
         var img = canvas.toDataURL();
         window.open(img);
     });
-    document.getElementById("uploadimg").addEventListener("change",function(){
-        var img=new Image();
-        var files = event.target.files||event.dataTransfer.files;
-        var file=files[0];
+    document.getElementById("uploadimg").addEventListener("change", function () {
+        var img = new Image();
+        var files = event.target.files || event.dataTransfer.files;
+        var file = files[0];
         console.log(file);
-        if(file){
+        if (file) {
             var reader = new FileReader();
-            reader.onload=function(){
+            reader.onload = function () {
 
-                img.src=this.result;
-                img.onload=function(){
+                img.src = this.result;
+                img.onload = function () {
                     var obj_random = {
                         on: false,//悬浮状态
                         select: false,//被选中状态
                         type: "icon",
                         //imgSrc:this.result,
-                        imgData:img,
+                        imgData: img,
                         point: {x: 0, y: 0},
                         width: img.width,
                         height: img.height,
@@ -518,5 +506,22 @@ window.onload = function () {
             reader.readAsDataURL(file);
         }
     });
+    document.getElementById("canvas").setAttribute("class", "canvas");
+    document.getElementById("pan").setAttribute("class", "pan");
+    document.getElementById("begin").setAttribute("class", "begin hide");
+    setInterval(function () {
+        render();
+    }, 100);
+}
 
+window.onload = function () {
+    document.getElementById("begin_800_600").addEventListener("click", function () {
+        begin(800, 600);
+    });
+    document.getElementById("begin_1000_1000").addEventListener("click", function () {
+        begin(1000, 1000);
+    });
+    document.getElementById("begin_500_500").addEventListener("click", function () {
+        begin(500, 500);
+    });
 }
