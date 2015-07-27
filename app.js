@@ -524,4 +524,16 @@ window.onload = function () {
     document.getElementById("begin_500_500").addEventListener("click", function () {
         begin(500, 500);
     });
+    document.getElementById("btn_diy").addEventListener("click", function () {
+        document.getElementById("begin_1000_1000").setAttribute("class", "hide");
+        document.getElementById("begin_800_600").setAttribute("class", "hide");
+        document.getElementById("begin_500_500").setAttribute("class", "hide");
+        document.getElementById("btn_diy").setAttribute("class", "hide");
+        document.getElementById("diy").setAttribute("class", "diy");
+    });
+    document.getElementById("begin_diy").addEventListener("click", function () {
+        var w=document.getElementById("begin_diy_width").value;
+        var h=document.getElementById("begin_diy_height").value;
+        begin(w, h);
+    });
 }
