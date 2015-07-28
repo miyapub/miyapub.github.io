@@ -14,7 +14,6 @@ Array.prototype.remove = function (obj) {
 
     });
 }
-
 var z_index = 0;//叠放顺序
 
 var objs = new Array();
@@ -78,15 +77,22 @@ function select_obj(obj) {
         cp = "move";
 
         //选中对象的属性
-
+        document.getElementById("obj_text").setAttribute("class", "hide");
         //边框大小
-        if (obj.type === "rect") {
+        if (obj.type === "rect" || obj.type === "text") {
             document.getElementById("obj_border").value = obj.border;
             //边框颜色
             document.getElementById("obj_color_stroke").value = obj.color.stroke;
             //填充颜色
             document.getElementById("obj_color_fill").value = obj.color.fill;
+
+            if (obj.type === "text") {
+                document.getElementById("obj_text").value = obj.text;
+                document.getElementById("obj_text").removeAttribute("class");
+            }
         }
+
+
     });
 }
 function un_select() {
@@ -117,11 +123,22 @@ function renderObj(obj) {
             c.fill();
             c.closePath();
             break;
+        case "text":
+            c.beginPath();
+            c.lineWidth = obj.border;
+            c.strokeStyle = obj.color.stroke;
+            c.fillStyle = obj.color.fill;
+            c.font = obj.height + "px Verdana";
+            if (obj.border > 0) {
+                c.strokeText(obj.text, obj.point.x, obj.point.y + obj.height * 1.05, obj.width);
+            }
+            c.fillText(obj.text, obj.point.x, obj.point.y + obj.height * 1.05, obj.width);
+            c.closePath();
+            break;
         case "icon":
             var img = new Image();
             if (obj.imgData != null) {
                 c.drawImage(obj.imgData, obj.point.x, obj.point.y, obj.width, obj.height);
-
             } else {
                 img.src = obj.imgSrc;
                 img.onload = function () {
@@ -294,7 +311,7 @@ function begin(width, height) {
         at_x = event.clientX;
         at_y = event.clientY;
 
-        at_x-=(window.innerWidth-canvas.width)/2;
+        at_x -= (window.innerWidth - canvas.width) / 2;
 
 
         if (mouse_left_key) {
@@ -385,6 +402,12 @@ function begin(width, height) {
             selected_obj.border = parseInt(this.value);
         }
     });
+    //文本内容
+    document.getElementById("obj_text").addEventListener("change", function () {
+        if (selected_obj) {
+            selected_obj.text = this.value;
+        }
+    });
     //边框颜色
     document.getElementById("obj_color_stroke").addEventListener("change", function () {
         if (selected_obj) {
@@ -409,23 +432,42 @@ function begin(width, height) {
             height: 50,
             border: 20,
             color: {fill: "#f00000", stroke: "#000000"},
-            text: "",
+            text: "text",
             name: "",
             zindex: z_index
         }
         objs.push(obj_random);
+        select_obj(obj_random);
+    });
+    document.getElementById("make_a_text").addEventListener("click", function () {
+        z_index += 1;
+        var obj_random = {
+            on: false,//悬浮状态
+            select: false,//被选中状态
+            type: "text",
+            point: {x: 0, y: 0},
+            width: 50,
+            height: 50,
+            border: 5,
+            color: {fill: "#f00000", stroke: "#000000"},
+            text: "text",
+            name: "",
+            zindex: z_index
+        }
+        objs.push(obj_random);
+        select_obj(obj_random);
     });
 
-    var elements=document.getElementsByClassName("element");
-    for(i=0;i<elements.length;i++){
-        var ele=elements[i];
+    var elements = document.getElementsByClassName("element");
+    for (i = 0; i < elements.length; i++) {
+        var ele = elements[i];
         ele.addEventListener("click", function () {
             z_index += 1;
             var obj_random = {
                 on: false,//悬浮状态
                 select: false,//被选中状态
                 type: "icon",
-                imgSrc: "icons/"+this.getAttribute("data-type")+"/"+this.getAttribute("data-src")+".png",
+                imgSrc: "icons/" + this.getAttribute("data-type") + "/" + this.getAttribute("data-src") + ".png",
                 imgData: null,
                 point: {x: 0, y: 0},
                 width: parseInt(this.getAttribute("data-w")),
@@ -437,6 +479,7 @@ function begin(width, height) {
                 zindex: z_index
             }
             objs.push(obj_random);
+            select_obj(obj_random);
         });
     }
 
@@ -502,8 +545,8 @@ window.onload = function () {
         document.getElementById("diy").setAttribute("class", "diy");
     });
     document.getElementById("begin_diy").addEventListener("click", function () {
-        var w=document.getElementById("begin_diy_width").value;
-        var h=document.getElementById("begin_diy_height").value;
+        var w = document.getElementById("begin_diy_width").value;
+        var h = document.getElementById("begin_diy_height").value;
         begin(w, h);
     });
 }
