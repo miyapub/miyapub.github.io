@@ -27,6 +27,33 @@
             width: auto;
             padding: 10px;
         }
+        #pan{
+            margin-top: 10px;
+        }
+        .element{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            background-size: 60%;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+
+        }
+        .element[data-src="gaoxing"]{
+            background-image:url(icons/face/gaoxing.png);
+        }
+        .element[data-src="bugaoxing"]{
+            background-image:url(icons/face/bugaoxing.png);
+        }
+        .element[data-src="man"]{
+            background-image:url(icons/role/man.png);
+        }
+        .element[data-src="1"]{
+            background-image:url(icons/say/1.png);
+        }
+
     </style>
     <script src="app.js"></script>
 </head>
@@ -48,10 +75,10 @@
     <div id="tools">
         <button id="make_a_rect">矩形</button>
 
-        <button class="element" data-type="face" data-src="gaoxing">高兴</button>
-        <button class="element" data-type="face" data-src="bugaoxing">不高兴</button>
-        <button class="element" data-type="role" data-src="man">人物</button>
-        <button class="element" data-type="say" data-src="1">对话框</button>
+        <button title="高兴" class="element" data-type="face" data-src="gaoxing" data-w="50" data-h="50"></button>
+        <button title="不高兴" class="element" data-type="face" data-src="bugaoxing" data-w="50" data-h="50"></button>
+        <button title="人物" class="element" data-type="role" data-src="man" data-w="150" data-h="220"></button>
+        <button title="对话框" class="element" data-type="say" data-src="1" data-w="100" data-h="80"></button>
 
 
     </div>
