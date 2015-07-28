@@ -294,6 +294,8 @@ function begin(width, height) {
         at_x = event.clientX;
         at_y = event.clientY;
 
+        at_x-=(window.innerWidth-canvas.width)/2;
+
 
         if (mouse_left_key) {
             //console.log("tuozhuai...")
