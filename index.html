@@ -46,18 +46,22 @@
 </div>
 <div id="pan" class="hide">
     <div id="tools">
-        <button id="make_a_rect">make_a_rect</button>
-        <button id="make_a_say">make_a_say</button>
-        <button id="make_a_man">make_a_man</button>
-        <button id="make_a_face_gaoxing">make_a_face_gaoxing</button>
+        <button id="make_a_rect">矩形</button>
+
+        <button class="element" data-type="face" data-src="gaoxing">高兴</button>
+        <button class="element" data-type="face" data-src="bugaoxing">不高兴</button>
+        <button class="element" data-type="role" data-src="man">人物</button>
+        <button class="element" data-type="say" data-src="1">对话框</button>
+
+
     </div>
     <div id="attribute">
         <input id="obj_border" type="number"/>
         <input id="obj_color_stroke" type="color"/>
         <input id="obj_color_fill" type="color"/>
     </div>
-    <button id="toimg">toImg</button>
-    <input type="file" id="uploadimg">upoad img</input>
+    <button id="toimg">另存为</button>
+    <input type="file" id="uploadimg">载入图片</input>
 </div>
 </body>
 </html>

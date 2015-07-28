@@ -415,63 +415,31 @@ function begin(width, height) {
         }
         objs.push(obj_random);
     });
-    document.getElementById("make_a_say").addEventListener("click", function () {
-        z_index += 1;
-        var obj_random = {
-            on: false,//悬浮状态
-            select: false,//被选中状态
-            type: "icon",
-            imgSrc: "icons/say.png",
-            imgData: null,
-            point: {x: 0, y: 0},
-            width: 50,
-            height: 50,
-            border: 20,
-            color: {fill: "#f00000", stroke: "#000000"},
-            text: "",
-            name: "",
-            zindex: z_index
-        }
-        objs.push(obj_random);
-    });
-    document.getElementById("make_a_face_gaoxing").addEventListener("click", function () {
-        z_index += 1;
-        var obj_random = {
-            on: false,//悬浮状态
-            select: false,//被选中状态
-            type: "icon",
-            imgSrc: "icons/face/gaoxing.png",
-            imgData: null,
-            point: {x: 0, y: 0},
-            width: 50,
-            height: 50,
-            border: 20,
-            color: {fill: "#f00000", stroke: "#000000"},
-            text: "",
-            name: "",
-            zindex: z_index
-        }
-        objs.push(obj_random);
-    });
-    document.getElementById("make_a_man").addEventListener("click", function () {
-        z_index += 1;
-        var obj_random = {
-            on: false,//悬浮状态
-            select: false,//被选中状态
-            type: "icon",
-            imgSrc: "icons/man.png",
-            imgData: null,
-            point: {x: 0, y: 0},
-            width: 125,
-            height: 200,
-            border: 20,
-            color: {fill: "#f00000", stroke: "#000000"},
-            text: "",
-            name: "",
-            zindex: z_index
-        }
-        objs.push(obj_random);
-    });
+
+    var elements=document.getElementsByClassName("element");
+    for(i=0;i<elements.length;i++){
+        var ele=elements[i];
+        ele.addEventListener("click", function () {
+            z_index += 1;
+            var obj_random = {
+                on: false,//悬浮状态
+                select: false,//被选中状态
+                type: "icon",
+                imgSrc: "icons/"+this.getAttribute("data-type")+"/"+this.getAttribute("data-src")+".png",
+                imgData: null,
+                point: {x: 0, y: 0},
+                width: 50,
+                height: 50,
+                border: 20,
+                color: {fill: "#f00000", stroke: "#000000"},
+                text: "",
+                name: "",
+                zindex: z_index
+            }
+            objs.push(obj_random);
+        });
+    }
+
     document.getElementById("toimg").addEventListener("click", function () {
         var img = canvas.toDataURL();
         window.open(img);
