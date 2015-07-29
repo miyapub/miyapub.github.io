@@ -80,6 +80,7 @@ body{
 .living_page,.comment_page{
     width: 100%;
     display: table;
+    padding-bottom: 10px;
 }
 .item{
     display: table;
@@ -158,6 +159,17 @@ p{
     width: 100%;
     border: none;
     border-radius: 5px;
+}
+.from_info{
+    background: #fff5e9;
+    width:auto;
+    padding: 10px;
+}
+.from_info .info_body{
+    background: none;
+}
+.from_info .role{
+    display: none;
 }
 .top{
 
