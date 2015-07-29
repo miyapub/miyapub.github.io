@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<html lang="zh-cmn-Hans">
+    <meta charset="UTF-8">
+    <title>直播的标题</title>
+    <meta name="viewport" content="initial-scale=2.0,maximum-scale=1,user-scalable=no">
+    <meta property="author" content="gongwb"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="../jquery-2.1.4.min.js"></script>
+</head>
+<body>
+    <div class="head_pic_area">
+        <img class="head_pic" src="img/headpic.png" />
+        <div class="title">2个机器人最终统治3个国家</div>
+    </div>
+    <div class="tab_menu">
+        <img class="tab_menu_auto_height" id="tab_menu_auto_height_for_live" src="img/tab_menu_live.png" alt="" width="100%" />
+        <img class="tab_menu_auto_height hide" id="tab_menu_auto_height_for_comments" src="img/tab_menu_comments.png" alt="" width="100%" />
+        <div id="live_mode_btn" class="live_mode_btn"></div>
+        <div id="comments_mode_btn" class="comments_mode_btn"></div>
+    </div>
+    <div class="live_area">
+        <div class="left_border"></div>
+        <div class="center_area">
+            <div class="living_page">
+
+                <div class="item">
+                    <div class="face_area">
+                        <div class="face_border">
+                            <img class="face_img" src="img/face1.jpg" alt=""/>
+                        </div>
+                    </div>
+                    <div class="info_area">
+                        <div class="info_header">
+                            <div class="name_and_role">
+                                <div class="user_name">制造一个大新闻</div>
+                                <div class="role">主持人</div>
+                            </div>
+                            <div class="post_time">2天前</div>
+                            <div class="like">5438 赞</div>
+                        </div>
+                        <div class="info_body">
+                            <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
+                            <p><img src="img/pic.jpg" alt=""/></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="face_area">
+                        <div class="face_border">
+                            <img class="face_img" src="img/face5.png" alt=""/>
+                        </div>
+                    </div>
+                    <div class="info_area">
+                        <div class="info_header">
+                            <div class="name_and_role">
+                                <div class="user_name">大雄喜欢静香</div>
+                                <div class="role">主持人</div>
+                            </div>
+                            <div class="post_time">刚刚</div>
+                            <div class="like">98 赞</div>
+                        </div>
+                        <div class="info_body">
+                            <p>说的好呀，说的妙！</p>
+                        </div>
+                        <div class="from_info">
+                            <div class="info_header">
+                                <div class="face_area">
+                                    <div class="face_border">
+                                        <img class="face_img" src="img/face4.png" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="name_and_role">
+                                    <div class="user_name">美谷稻</div>
+                                    <div class="role">网友</div>
+                                </div>
+                                <div class="post_time">5天前</div>
+                                <div class="like">98 赞</div>
+                            </div>
+                            <div class="info_body">
+                                <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
+
+
+
+                                <p><img src="img/pic2.jpg" alt=""/></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="face_area">
+                        <div class="face_border">
+                            <img class="face_img" src="img/face3.png" alt=""/>
+                        </div>
+                    </div>
+                    <div class="info_area">
+                        <div class="info_header">
+                            <div class="name_and_role">
+                                <div class="user_name">丁丁文案</div>
+                                <div class="role">主持人</div>
+                            </div>
+                            <div class="post_time">3分钟前</div>
+                            <div class="like">8776 赞</div>
+                        </div>
+                        <div class="info_body">
+                            <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
+                            <p><img src="img/pic3.jpg" alt=""/></p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="comment_page hide">
+                <div class="hot_comments"></div>
+                <div class="new_comments"></div>
+            </div>
+        </div>
+        <div class="right_border"></div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#live_mode_btn').click(function(){
+                $('#tab_menu_auto_height_for_live').attr("class","tab_menu_auto_height");
+                $('#tab_menu_auto_height_for_comments').attr("class","tab_menu_auto_height hide");
+
+                $('.living_page').attr("class","living_page");
+                $('.comment_page').attr("class","comment_page hide");
+            });
+            $('#comments_mode_btn').click(function(){
+                $('#tab_menu_auto_height_for_comments').attr("class","tab_menu_auto_height");
+                $('#tab_menu_auto_height_for_live').attr("class","tab_menu_auto_height hide");
+                $('.comment_page').attr("class","comment_page");
+                $('.living_page').attr("class","living_page hide");
+
+            });
+        });
+    </script>
+</body>
+</html>
