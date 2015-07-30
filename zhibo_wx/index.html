@@ -1,55 +1,77 @@
 <!DOCTYPE html>
 <html>
-<html lang="zh-cmn-Hans">
+<div lang="zh-cmn-Hans">
     <meta charset="UTF-8">
-    <title>直播的标题</title>
+    <title>2个机器人最终统治3个国家</title>
     <meta name="viewport" content="initial-scale=2.0,maximum-scale=1,user-scalable=no">
     <meta property="author" content="gongwb"/>
     <link rel="stylesheet" href="style.css"/>
     <script src="../jquery-2.1.4.min.js"></script>
-</head>
-<body>
+    </head>
+    <body>
     <div class="head_pic_area">
-        <img class="head_pic" src="img/headpic.png" />
+        <!-- 头图 -->
+        <img class="head_pic" src="img/headpic.png"/>
+        <!-- 标题 -->
         <div class="title">2个机器人最终统治3个国家</div>
     </div>
     <div class="tab_menu">
-        <img class="tab_menu_auto_height" id="tab_menu_auto_height_for_live" src="img/tab_menu_live.png" alt="" width="100%" />
-        <img class="tab_menu_auto_height hide" id="tab_menu_auto_height_for_comments" src="img/tab_menu_comments.png" alt="" width="100%" />
+        <img class="tab_menu_auto_height" id="tab_menu_auto_height_for_live" src="img/tab_menu_live.png" alt=""
+             width="100%"/>
+        <img class="tab_menu_auto_height hide" id="tab_menu_auto_height_for_comments" src="img/tab_menu_comments.png"
+             alt=""
+             width="100%"/>
+
         <div id="live_mode_btn" class="live_mode_btn"></div>
         <div id="comments_mode_btn" class="comments_mode_btn"></div>
     </div>
-    <div class="live_area">
-        <div class="left_border"></div>
-        <div class="center_area">
-            <div class="living_page">
 
-                <div class="item">
+    <!-- 直播区域（主持人） -->
+    <div class="living_page">
+        <div class="live_area">
+            <div class="left_border"></div>
+            <div class="center_area">
+
+                <!-- 循环开始 -->
+
+                <!-- 置顶 增加 class：top -->
+                <div class="item top">
                     <div class="face_area">
                         <div class="face_border">
-                            <img class="face_img" src="img/face1.jpg" alt=""/>
+                            <!-- 头像 -->
+                            <img class="face_img" src="img/face1.jpg"/>
                         </div>
                     </div>
                     <div class="info_area">
                         <div class="info_header">
                             <div class="name_and_role">
+                                <!-- 用户名 -->
                                 <div class="user_name">制造一个大新闻</div>
+                                <!-- 角色 -->
                                 <div class="role">主持人</div>
                             </div>
+                            <!-- 发布时间 -->
                             <div class="post_time">2天前</div>
+                            <!-- 赞 -->
                             <div class="like">5438 赞</div>
                         </div>
                         <div class="info_body">
-                            <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
-                            <p><img src="img/pic.jpg" alt=""/></p>
+                            <!-- 内容开始 -->
+                            <p>
+                                当日时间凌晨2点，位于18环附近的一个小村庄被一群恐怖机器人占领，目前安全机器人部队已经到达现场，双方展开激烈的电磁战，由于缺乏电源供应，专家称恐怖机器人只够5小时的电量。</p>
+
+                            <p><img src="img/pic.jpg"/></p>
+                            <!-- 内容结束 -->
                         </div>
                     </div>
                 </div>
+                <!-- 结束 -->
 
+                <!-- 开始 -->
                 <div class="item">
                     <div class="face_area">
                         <div class="face_border">
-                            <img class="face_img" src="img/face5.png" alt=""/>
+                            <img class="face_img" src="img/face5.png"/>
                         </div>
                     </div>
                     <div class="info_area">
@@ -62,13 +84,16 @@
                             <div class="like">98 赞</div>
                         </div>
                         <div class="info_body">
+                            <!-- 内容 -->
                             <p>说的好呀，说的妙！</p>
                         </div>
+
+                        <!-- 引用信息来自于转发的 -->
                         <div class="from_info">
                             <div class="info_header">
                                 <div class="face_area">
                                     <div class="face_border">
-                                        <img class="face_img" src="img/face4.png" alt=""/>
+                                        <img class="face_img" src="img/face4.png"/>
                                     </div>
                                 </div>
                                 <div class="name_and_role">
@@ -79,20 +104,21 @@
                                 <div class="like">98 赞</div>
                             </div>
                             <div class="info_body">
-                                <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
-
-
+                                <!-- 内容 -->
+                                <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont
+                                    College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
 
                                 <p><img src="img/pic2.jpg" alt=""/></p>
                             </div>
                         </div>
+                        <!-- 引用信息结束 -->
                     </div>
                 </div>
 
                 <div class="item">
                     <div class="face_area">
                         <div class="face_border">
-                            <img class="face_img" src="img/face3.png" alt=""/>
+                            <img class="face_img" src="img/face3.png"/>
                         </div>
                     </div>
                     <div class="info_area">
@@ -105,7 +131,9 @@
                             <div class="like">8776 赞</div>
                         </div>
                         <div class="info_body">
-                            <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
+                            <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont
+                                College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
+
                             <p><img src="img/pic3.jpg" alt=""/></p>
                         </div>
                     </div>
@@ -113,30 +141,218 @@
 
 
             </div>
-            <div class="comment_page hide">
-                <div class="hot_comments"></div>
-                <div class="new_comments"></div>
-            </div>
+            <div class="right_border"></div>
         </div>
-        <div class="right_border"></div>
+    </div>
+
+    <!-- 评论区域 -->
+
+    <div class="comment_page hide">
+        <div class="live_area yellow">
+            <div class="left_border"></div>
+            <div class="center_area">
+
+                <div class="hot_comments">
+                    <img src="img/hot.png"/>
+
+                    <div class="item">
+                        <div class="face_area">
+                            <div class="face_border">
+                                <img class="face_img" src="img/face3.png"/>
+                            </div>
+                        </div>
+                        <div class="info_area">
+                            <div class="info_header">
+                                <div class="name_and_role">
+                                    <div class="user_name">丁丁文案</div>
+                                    <div class="role">主持人</div>
+                                </div>
+                                <div class="post_time">3分钟前</div>
+                                <div class="like">8776 赞</div>
+                            </div>
+                            <div class="info_body">
+                                <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont
+                                    College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
+                            </div>
+                            <!-- 引用信息来自于转发的 -->
+                            <div class="from_info">
+                                <div class="info_header">
+                                    <div class="face_area">
+                                        <div class="face_border">
+                                            <img class="face_img" src="img/face4.png"/>
+                                        </div>
+                                    </div>
+                                    <div class="name_and_role">
+                                        <div class="user_name">美谷稻</div>
+                                        <div class="role">网友</div>
+                                    </div>
+                                    <div class="post_time">5天前</div>
+                                    <div class="like">98 赞</div>
+                                </div>
+                                <div class="info_body">
+                                    <!-- 内容 -->
+                                    <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont
+                                        College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
+
+                                    <p><img src="img/pic2.jpg" alt=""/></p>
+                                </div>
+                            </div>
+                            <!-- 引用信息结束 -->
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="right_border"></div>
+        </div>
+        <div class="br">
+            <img src="img/br.png"/>
+        </div>
+        <div class="live_area blue">
+            <div class="left_border"></div>
+            <div class="center_area">
+                <div class="new_comments">
+                    <img src="img/new.png"/>
+
+                    <div class="item">
+                        <div class="face_area">
+                            <div class="face_border">
+                                <img class="face_img" src="img/face3.png"/>
+                            </div>
+                        </div>
+                        <div class="info_area">
+                            <div class="info_header">
+                                <div class="name_and_role">
+                                    <div class="user_name">丁丁文案</div>
+                                    <div class="role">主持人</div>
+                                </div>
+                                <div class="post_time">3分钟前</div>
+                                <div class="like">8776 赞</div>
+                            </div>
+                            <div class="info_body">
+                                <p>据澳洲媒体29日报道，位于澳大利亚悉尼东区的克莱蒙特学院(Claremont
+                                    College)中，3年级和5年级的学生将不得不重考澳洲文理测试(NAPLAN)，因为澳大利亚邮局把他们答完的考卷给弄丢了。</p>
+
+                                <p><img src="img/pic3.jpg" alt=""/></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="face_area">
+                            <div class="face_border">
+                                <img class="face_img" src="img/face4.png"/>
+                            </div>
+                        </div>
+                        <div class="info_area">
+                            <div class="info_header">
+                                <div class="name_and_role">
+                                    <div class="user_name">张玛妮</div>
+                                    <div class="role">用户</div>
+                                </div>
+                                <div class="post_time">3分钟前</div>
+                                <div class="like">8776 赞</div>
+                            </div>
+                            <div class="info_body">
+                                <p>蜗牛说：“我tmd就日了🐶了”</p>
+                            </div>
+                            <!-- 引用信息来自于转发的 -->
+                            <div class="from_info">
+                                <div class="info_header">
+                                    <div class="face_area">
+                                        <div class="face_border">
+                                            <img class="face_img" src="img/face4.png"/>
+                                        </div>
+                                    </div>
+                                    <div class="name_and_role">
+                                        <div class="user_name">美谷稻</div>
+                                        <div class="role">网友</div>
+                                    </div>
+                                    <div class="post_time">5天前</div>
+                                    <div class="like">98 赞</div>
+                                </div>
+                                <div class="info_body">
+                                    <!-- 内容 -->
+                                    <p>刚刚捉到一只，给彩绘成这个样子了。</p>
+
+                                    <p><img src="img/woniu.jpg" alt=""/></p>
+                                </div>
+                            </div>
+                            <!-- 引用信息结束 -->
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="face_area">
+                            <div class="face_border">
+                                <img class="face_img" src="img/face3.png"/>
+                            </div>
+                        </div>
+                        <div class="info_area">
+                            <div class="info_header">
+                                <div class="name_and_role">
+                                    <div class="user_name">丁丁文案</div>
+                                    <div class="role">主持人</div>
+                                </div>
+                                <div class="post_time">3分钟前</div>
+                                <div class="like">8776 赞</div>
+                            </div>
+                            <div class="info_body">
+                                <p>你有考虑到蜗牛的感受吗？</p>
+                            </div>
+                            <!-- 引用信息来自于转发的 -->
+                            <div class="from_info">
+                                <div class="info_header">
+                                    <div class="face_area">
+                                        <div class="face_border">
+                                            <img class="face_img" src="img/face4.png"/>
+                                        </div>
+                                    </div>
+                                    <div class="name_and_role">
+                                        <div class="user_name">美谷稻</div>
+                                        <div class="role">网友</div>
+                                    </div>
+                                    <div class="post_time">5天前</div>
+                                    <div class="like">98 赞</div>
+                                </div>
+                                <div class="info_body">
+                                    <!-- 内容 -->
+                                    <p>刚刚捉到一只，给彩绘成这个样子了。</p>
+
+                                    <p><img src="img/woniu.jpg" alt=""/></p>
+                                </div>
+                            </div>
+                            <!-- 引用信息结束 -->
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="right_border"></div>
+        </div>
     </div>
     <script>
-        $(document).ready(function(){
-            $('#live_mode_btn').click(function(){
-                $('#tab_menu_auto_height_for_live').attr("class","tab_menu_auto_height");
-                $('#tab_menu_auto_height_for_comments').attr("class","tab_menu_auto_height hide");
+        $(document).ready(function () {
+            $('#live_mode_btn').click(function () {
+                $('#tab_menu_auto_height_for_live').attr("class", "tab_menu_auto_height");
+                $('#tab_menu_auto_height_for_comments').attr("class", "tab_menu_auto_height hide");
 
-                $('.living_page').attr("class","living_page");
-                $('.comment_page').attr("class","comment_page hide");
+                $('.living_page').attr("class", "living_page");
+                $('.comment_page').attr("class", "comment_page hide");
             });
-            $('#comments_mode_btn').click(function(){
-                $('#tab_menu_auto_height_for_comments').attr("class","tab_menu_auto_height");
-                $('#tab_menu_auto_height_for_live').attr("class","tab_menu_auto_height hide");
-                $('.comment_page').attr("class","comment_page");
-                $('.living_page').attr("class","living_page hide");
+            $('#comments_mode_btn').click(function () {
+                $('#tab_menu_auto_height_for_comments').attr("class", "tab_menu_auto_height");
+                $('#tab_menu_auto_height_for_live').attr("class", "tab_menu_auto_height hide");
+                $('.comment_page').attr("class", "comment_page");
+                $('.living_page').attr("class", "living_page hide");
 
             });
         });
     </script>
-</body>
+    </body>
 </html>

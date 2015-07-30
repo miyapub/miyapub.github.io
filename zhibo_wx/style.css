@@ -64,7 +64,7 @@ body{
     float: left;
     display: table;
     width: 100%;
-    display: table;
+    padding-bottom: 10px;
 }
 .left_border{
     width: 10px;
@@ -79,7 +79,6 @@ body{
 }
 .living_page,.comment_page{
     width: 100%;
-    display: table;
     padding-bottom: 10px;
 }
 .item{
@@ -89,11 +88,15 @@ body{
 }
 .face_area{
     display: table-cell;
-    width: 60px;
+    width: 50px;
     vertical-align: top;
 }
+.top .face_area {
+    background: url("img/topicon.png");
+    background-repeat: no-repeat;
+    background-size: 40px;
+}
 .face_border{
-    margin: auto;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -117,6 +120,25 @@ body{
     vertical-align: middle;
     line-height: 25px;
 
+}
+.top .info_header {
+    background-color: #fffeb0;
+    border: solid 10px #fffeb0;
+    /*border-bottom: solid 2px #d9d896;*/
+    margin: -10px 0 0 -10px;
+
+}
+.top .info_header:after {
+    background-color: #d9d896;
+    border-left: solid 10px #d9d896;
+    border-right: solid 10px #d9d896;
+    margin: -10px 0 0 -10px;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: -10px;
 }
 .user_name{
     float: left;
@@ -164,6 +186,7 @@ p{
     background: #fff5e9;
     width:auto;
     padding: 10px;
+    margin: 10px 0 0 0;
 }
 .from_info .info_body{
     background: none;
@@ -171,6 +194,29 @@ p{
 .from_info .role{
     display: none;
 }
+
+
+
+/* comments */
+.hot_comments,.new_comments{
+    width: 100%;
+    margin: 10px 0 0 0;
+}
+.br{
+    width: 100%;
+    margin-bottom: -5px;
+}
+.br img{
+    width: 100%;
+}
+.yellow{
+    background: #fff2e2;
+}
+.blue{
+    background: #c7d7dc;
+}
+
+
 .top{
 
 }
