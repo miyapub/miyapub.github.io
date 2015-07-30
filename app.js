@@ -79,7 +79,7 @@ function select_obj(obj) {
         //选中对象的属性
         document.getElementById("obj_text").setAttribute("class", "hide");
         //边框大小
-        if (obj.type === "rect" || obj.type === "text") {
+        if (obj.type === "rect" || obj.type === "text" || obj.type==="arc") {
             document.getElementById("obj_border").value = obj.border;
             //边框颜色
             document.getElementById("obj_color_stroke").value = obj.color.stroke;
@@ -123,6 +123,23 @@ function renderObj(obj) {
             c.fill();
             c.closePath();
             break;
+        case "arc":
+            c.lineWidth = obj.border;
+            c.strokeStyle = obj.color.stroke;
+            c.fillStyle = obj.color.fill;
+            //中心定位法
+
+            c.beginPath();
+            //c.rect(obj.point.x, obj.point.y, obj.width, obj.height);
+            c.arc(obj.point.x+obj.width/2, obj.point.y+obj.height/2,obj.width/2,0,2*Math.PI);
+            if (obj.border > 0) {
+                c.stroke();
+            }
+            c.fill();
+            c.closePath();
+            break;
+
+
         case "text":
             c.beginPath();
             c.lineWidth = obj.border;
@@ -188,7 +205,7 @@ function renderObj(obj) {
 function render() {
     //清除画板
     c.clearRect(0, 0, canvas.width, canvas.height);
-    c.fillStyle=canvas.getAttribute("data-bgcolor");
+    c.fillStyle = canvas.getAttribute("data-bgcolor");
     c.fillRect(0, 0, canvas.width, canvas.height);
 
     //循环 绘制所有元素
@@ -441,6 +458,25 @@ function begin(width, height) {
         objs.push(obj_random);
         select_obj(obj_random);
     });
+    document.getElementById("make_a_arc").addEventListener("click", function () {
+        z_index += 1;
+        var obj_random = {
+            on: false,//悬浮状态
+            select: false,//被选中状态
+            type: "arc",
+            point: {x: 0, y: 0},
+            width: 50,
+            height: 50,
+            border: 20,
+            color: {fill: "#f00000", stroke: "#000000"},
+            text: "text",
+            name: "",
+            zindex: z_index
+        }
+        objs.push(obj_random);
+        select_obj(obj_random);
+    });
+
     document.getElementById("make_a_text").addEventListener("click", function () {
         z_index += 1;
         var obj_random = {
@@ -490,7 +526,7 @@ function begin(width, height) {
         window.open(img);
     });
     document.getElementById("canvas_bgcolor").addEventListener("change", function () {
-        canvas.setAttribute("data-bgcolor",this.value);
+        canvas.setAttribute("data-bgcolor", this.value);
     });
     document.getElementById("uploadimg").addEventListener("change", function () {
         var img = new Image();
