@@ -117,6 +117,21 @@ body{
     padding: 10px;
     background: #fff;
     border-radius: 10px;
+    position: relative;
+}
+.info_area:after {
+    content: " ";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-right: solid 15px #fff;
+    border-bottom: solid 10px transparent;
+    border-top: solid 10px transparent;
+    top: 10px;
+    left: -8px;
+}
+.top .info_area:after{
+    display: none;
 }
 .info_header{
     width: 100%;
@@ -193,6 +208,18 @@ p{
     width:auto;
     padding: 10px;
     margin: 10px 0 0 0;
+    position: relative;
+}
+.from_info:after {
+    content: " ";
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    top: -10px;
+    left: 40px;
+    border-bottom: solid 10px #fff2e2;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
 }
 .from_info .info_body{
     background: none;
