@@ -187,8 +187,10 @@ function renderObj(obj) {
 }
 function render() {
     //清除画板
-
     c.clearRect(0, 0, canvas.width, canvas.height);
+    c.fillStyle=canvas.getAttribute("data-bgcolor");
+    c.fillRect(0, 0, canvas.width, canvas.height);
+
     //循环 绘制所有元素
 
     _do_objs_in_and_after(function (obj) {
@@ -486,6 +488,9 @@ function begin(width, height) {
     document.getElementById("toimg").addEventListener("click", function () {
         var img = canvas.toDataURL();
         window.open(img);
+    });
+    document.getElementById("canvas_bgcolor").addEventListener("change", function () {
+        canvas.setAttribute("data-bgcolor",this.value);
     });
     document.getElementById("uploadimg").addEventListener("change", function () {
         var img = new Image();

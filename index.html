@@ -10,6 +10,7 @@
         }
         body{
             text-align: center;
+            background:rgba(0,0,0,0.2);
         }
 
         canvas {
@@ -61,7 +62,7 @@
     <script src="app.js"></script>
 </head>
 <body>
-<canvas id="canvas" class="hide"></canvas>
+<canvas id="canvas" data-bgcolor="#ffffff" class="hide"></canvas>
 <div id="begin" class="begin">
     <h3>新建画板</h3>
     <button id="begin_800_600">800*600</button>
@@ -88,6 +89,10 @@
 
     </div>
     <div id="attribute">
+        <label for="canvas_bgcolor">
+            画布背景
+        </label>
+        <input type="color" name="canvas_bgcolor" id="canvas_bgcolor" value="#ffffff" />
         <input id="obj_border" type="number"/>
         <input id="obj_color_stroke" type="color"/>
         <input id="obj_color_fill" type="color"/>
