@@ -131,7 +131,22 @@ function renderObj(obj) {
 
             c.beginPath();
             //c.rect(obj.point.x, obj.point.y, obj.width, obj.height);
-            c.arc(obj.point.x+obj.width/2, obj.point.y+obj.height/2,obj.width/2,0,2*Math.PI);
+            //c.arc(obj.point.x+obj.width/2, obj.point.y+obj.height/2,obj.width/2,0,2*Math.PI);
+
+            var k=1.2;
+            c.moveTo(obj.point.x,obj.point.y+obj.height/2);
+            var i=obj.point.y+obj.height/2+obj.height/2*k;
+
+
+            c.bezierCurveTo(obj.point.x,i,obj.point.x+obj.width,i,obj.point.x+obj.width,obj.point.y+obj.height/2);
+
+
+            c.moveTo(obj.point.x,obj.point.y+obj.height/2);
+
+            i=obj.point.y+obj.height/2-obj.height/2*k;
+
+            c.bezierCurveTo(obj.point.x,i,obj.point.x+obj.width,i,obj.point.x+obj.width,obj.point.y+obj.height/2);
+
             if (obj.border > 0) {
                 c.stroke();
             }
