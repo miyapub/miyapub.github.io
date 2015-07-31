@@ -79,7 +79,7 @@ function select_obj(obj) {
         //选中对象的属性
         document.getElementById("obj_text").setAttribute("class", "hide");
         //边框大小
-        if (obj.type === "rect" || obj.type === "text" || obj.type==="arc") {
+        if (obj.type === "rect" || obj.type === "text" || obj.type === "arc") {
             document.getElementById("obj_border").value = obj.border;
             //边框颜色
             document.getElementById("obj_color_stroke").value = obj.color.stroke;
@@ -133,19 +133,19 @@ function renderObj(obj) {
             //c.rect(obj.point.x, obj.point.y, obj.width, obj.height);
             //c.arc(obj.point.x+obj.width/2, obj.point.y+obj.height/2,obj.width/2,0,2*Math.PI);
 
-            var k=1.2;
-            c.moveTo(obj.point.x,obj.point.y+obj.height/2);
-            var i=obj.point.y+obj.height/2+obj.height/2*k;
+            var k = 1.2;
+            c.moveTo(obj.point.x, obj.point.y + obj.height / 2);
+            var i = obj.point.y + obj.height / 2 + obj.height / 2 * k;
 
 
-            c.bezierCurveTo(obj.point.x,i,obj.point.x+obj.width,i,obj.point.x+obj.width,obj.point.y+obj.height/2);
+            c.bezierCurveTo(obj.point.x, i, obj.point.x + obj.width, i, obj.point.x + obj.width, obj.point.y + obj.height / 2);
 
 
-            c.moveTo(obj.point.x,obj.point.y+obj.height/2);
+            c.moveTo(obj.point.x, obj.point.y + obj.height / 2);
 
-            i=obj.point.y+obj.height/2-obj.height/2*k;
+            i = obj.point.y + obj.height / 2 - obj.height / 2 * k;
 
-            c.bezierCurveTo(obj.point.x,i,obj.point.x+obj.width,i,obj.point.x+obj.width,obj.point.y+obj.height/2);
+            c.bezierCurveTo(obj.point.x, i, obj.point.x + obj.width, i, obj.point.x + obj.width, obj.point.y + obj.height / 2);
 
             if (obj.border > 0) {
                 c.stroke();
@@ -340,65 +340,118 @@ function begin(width, height) {
     canvas.onmouseup = function () {
         mouse_left_key = false;
     }
+    function tuozhuai() {
+        if (selected_obj != null) {
+            //原始的上下左右（当前）
+            var zuobian = selected_obj.point.x;
+            var youbian = selected_obj.point.x + selected_obj.width;
+            var shangbian = selected_obj.point.y;
+            var xiabian = selected_obj.point.y + selected_obj.height;
+
+            //如果有已经选择的对象，就拖动对象。
+            if (cp === "move") {
+
+                selected_obj.point.x = at_x - cha_x;
+                selected_obj.point.y = at_y - cha_y;
+            }
+
+            if (cp === "zs") {
+                //拖拽左上角
+                selected_obj.point.x = at_x;
+                selected_obj.point.y = at_y;
+                selected_obj.width = youbian - selected_obj.point.x;
+                selected_obj.height = xiabian - at_y;
+
+
+            }
+
+            if (cp === "zx") {
+                //拖拽左下角
+                console.log("拖拽 左下角...")
+                selected_obj.point.x = at_x;
+                selected_obj.width = youbian - selected_obj.point.x;
+                selected_obj.height = at_y - selected_obj.point.y;
+            }
+            if (cp === "yx") {
+                //拖拽右下角
+                console.log("拖拽 右下角...")
+                selected_obj.width = at_x - selected_obj.point.x;
+                selected_obj.height = at_y - selected_obj.point.y;
+            }
+            if (cp === "ys") {
+                //拖拽右上角
+
+                console.log("拖拽 右上角...")
+                selected_obj.width = at_x - selected_obj.point.x;
+
+                selected_obj.point.y = at_y;
+                selected_obj.height = xiabian - at_y;
+
+            }
+        }
+    }
+
+    /*
+     canvas.addEventListener("touchstart",function(){
+     console.log("touch start")
+     event.preventDefault();
+     var touch = event.touches[0]; //获取第一个触点
+     var x = Number(touch.pageX); //页面触点X坐标
+     var y = Number(touch.pageY); //页面触点Y坐标
+     at_x = x;
+     at_y = y;
+     at_x -= (window.innerWidth - canvas.width) / 2;
+     if(selected_obj!=null){
+     cha_x = at_x - selected_obj.point.x;
+     cha_y = at_y - selected_obj.point.y;
+     }else{
+     cha_x = 0;
+     cha_y = 0;
+     }
+     if(cp==="out"){
+     un_select();
+     }
+     if (cp === "over") {
+     select_obj(on_obj);
+     }
+     });
+     canvas.addEventListener("touchmove",function(){
+     //console.log(event)
+     event.preventDefault();
+
+     var touch = event.touches[0]; //获取第一个触点
+     var x = Number(touch.pageX); //页面触点X坐标
+     var y = Number(touch.pageY); //页面触点Y坐标
+     at_x = x;
+     at_y = y;
+     at_x -= (window.innerWidth - canvas.width) / 2;
+
+     cha_x = 0;
+     cha_y = 0;
+
+     console.log(at_x+":"+at_y);
+
+     _cur();
+
+     if(cp==="move"){
+     console.log("tuo")
+     tuozhuai();
+     }
+
+
+
+     });
+     */
     canvas.onmousemove = function () {
 
         at_x = event.clientX;
         at_y = event.clientY;
 
         at_x -= (window.innerWidth - canvas.width) / 2;
-
-
         if (mouse_left_key) {
             //console.log("tuozhuai...")
             //如果移动的时候，还按着左键。就是拖动
-            if (selected_obj != null) {
-                //原始的上下左右（当前）
-                var zuobian = selected_obj.point.x;
-                var youbian = selected_obj.point.x + selected_obj.width;
-                var shangbian = selected_obj.point.y;
-                var xiabian = selected_obj.point.y + selected_obj.height;
-
-                //如果有已经选择的对象，就拖动对象。
-                if (cp === "move") {
-
-                    selected_obj.point.x = at_x - cha_x;
-                    selected_obj.point.y = at_y - cha_y;
-                }
-
-                if (cp === "zs") {
-                    //拖拽左上角
-                    selected_obj.point.x = at_x;
-                    selected_obj.point.y = at_y;
-                    selected_obj.width = youbian - selected_obj.point.x;
-                    selected_obj.height = xiabian - at_y;
-
-
-                }
-
-                if (cp === "zx") {
-                    //拖拽左下角
-                    console.log("拖拽 左下角...")
-                    selected_obj.point.x = at_x;
-                    selected_obj.width = youbian - selected_obj.point.x;
-                    selected_obj.height = at_y - selected_obj.point.y;
-                }
-                if (cp === "yx") {
-                    //拖拽右下角
-                    console.log("拖拽 右下角...")
-                    selected_obj.width = at_x - selected_obj.point.x;
-                    selected_obj.height = at_y - selected_obj.point.y;
-                }
-                if (cp === "ys") {
-                    //拖拽右上角
-
-                    console.log("拖拽 右上角...")
-                    selected_obj.width = at_x - selected_obj.point.x;
-
-                    selected_obj.point.y = at_y;
-                    selected_obj.height = xiabian - at_y;
-
-                }
-            }
+            tuozhuai();
         } else {
             //没有拖拽
             _cur();
@@ -514,6 +567,8 @@ function begin(width, height) {
     var elements = document.getElementsByClassName("element");
     for (i = 0; i < elements.length; i++) {
         var ele = elements[i];
+
+        ele.style.backgroundImage = "url(icons/" + ele.getAttribute("data-type") + "/" + ele.getAttribute("data-src") + ".png)";
         ele.addEventListener("click", function () {
             z_index += 1;
             var obj_random = {
